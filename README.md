@@ -66,7 +66,7 @@ not work with dom0).
     Linux debian-7 3.2.0-4-amd64 #1 SMP Debian 3.2.54-2 x86_64 GNU/Linux
     Sat Feb 15 20:51:26 UTC 2014
 
-    : vagrant@wheezy-xen:~$;
+    : vagrant@wheezy-xen:~$;  
 
 
 And that's it -- subsequently, `vagrant halt` will stop the VM (or the usual
