@@ -15,24 +15,10 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-# Configure `apt` to use UK mirror, install a recent `git` from backports and
-# base system packages.
+# Set the VM hostname
 
 set -ex
 
-BACKPORTS=http://http.us.debian.org/debian
-MIRROR=ftp.uk.debian.org
+HOSTNAME=wheezy-xen
 
-## backports good -- git 1.8 please
-grep wheezy-backports /etc/apt/sources.list ||
-    (echo "deb $BACKPORTS wheezy-backports main" >> /etc/apt/sources.list)
-
-sed -i "s/http.us.debian.org/$MIRROR/g" /etc/apt/sources.list
-
-apt-get update
-apt-get -y -t wheezy-backports install "git"
-
-apt-get install -y build-essential m4                        # build tools
-apt-get install -y xen-tools                                 # xen client tools
-apt-get install -y ocaml ocaml-native-compilers camlp4-extra # ocaml
-apt-get install -y aspcud                                    # opam solver
+echo "$HOSTNAME" >| /etc/hostname
