@@ -2,7 +2,7 @@
 
 ## Installing Vagrant
 
-First, install __Vagrant__. On OSX I use [homebrew][] so I do this as follows:
+First, install [Vagrant][]. On OSX I use [homebrew][] so I do this as follows:
 
     $ brew tap phinze/cask
     $ brew install brew-cask
