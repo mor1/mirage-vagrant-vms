@@ -9,7 +9,7 @@ First, install __Vagrant__. On OSX I use [homebrew][] so I do this as follows:
     $ brew cask install vagrant
     $ vagrant --version
     Vagrant 1.4.3
-
+    
 
 [homebrew]: http://brew.sh/
 [vagrant]: http://vagrantup.com/
@@ -51,6 +51,7 @@ privilege is required to create the NFS mounts on the host so that the host
 filesystem can be shared with dom0 in the VM (the VirtualBox guest additions do
 not work with dom0).
 
+```
     $ vagrant up
     ...
     $ vagrant ssh
@@ -66,8 +67,8 @@ not work with dom0).
     Linux debian-7 3.2.0-4-amd64 #1 SMP Debian 3.2.54-2 x86_64 GNU/Linux
     Sat Feb 15 20:51:26 UTC 2014
 
-    : vagrant@wheezy-xen:~$;  
-
+    : vagrant@wheezy-xen:~$;
+```
 
 And that's it -- subsequently, `vagrant halt` will stop the VM (or the usual
 `shutdown -h now` when logged into it), `vagrant up` will restart it, and
