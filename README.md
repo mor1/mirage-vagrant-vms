@@ -10,6 +10,7 @@ First, install __Vagrant__. On OSX I use [homebrew][] so I do this as follows:
     $ vagrant --version
     Vagrant 1.4.3
 
+
 [homebrew]: http://brew.sh/
 [vagrant]: http://vagrantup.com/
 
@@ -23,6 +24,7 @@ and then install [veewee][]:
     $ veewee version
     Version : 0.3.12 - use at your own risk
 
+
 [ruby]: https://www.ruby-lang.org/
 [rvm]: https://rvm.io/
 [veewee]: https://github.com/jedi4ever/veewee
@@ -34,12 +36,14 @@ First, clone my Vagrant repo:
     $ git clone https://github.com/mor1/mirage-vagrant-vms.git
     $ cd mirage-vagrant-vms
 
+
 Then, build the box from the basebox:
 
     $ veewee vbox build 'debian-7.4.0-xen'
     $ veewee vbox export 'debian-7.4.0-xen'
     $ mv debian-7.4.0-xen.box boxes
     $ vagrant box add debian-7.4.0-xen boxes/debian-7.4.0-xen.box
+
 
 Finally, bring up a VM from the box and login; the first time this creates lots
 of output as the VM is created, initialised and provisioned. Administrator
@@ -50,7 +54,7 @@ not work with dom0).
     $ vagrant up
     ...
     $ vagrant ssh
-    Linux debian-7 3.2.0-4-amd64 #1 SMP Debian 3.2.54-2 x86_64
+    Linux wheezy-xen 3.2.0-4-amd64 #1 SMP Debian 3.2.54-2 x86_64
 
     The programs included with the Debian GNU/Linux system are free software;
     the exact distribution terms for each program are described in the
@@ -64,9 +68,15 @@ not work with dom0).
 
     : vagrant@wheezy-xen:~$;
 
+
 And that's it -- subsequently, `vagrant halt` will stop the VM (or the usual
 `shutdown -h now` when logged into it), `vagrant up` will restart it, and
-`vagrant ssh` to login.
+`vagrant ssh` to login. The VM is accessible from the host at the specified
+address (by default, `46.43.42.137`).
 
 If you want to customise the box, I suggest looking at the `Vagrantfile` plus
 the scripts in `provisioning/`.
+
+If when logging in the first time after provisioning you find that the shared
+filesystem is not accessible (by default at `/mort`), logout, `vagrant halt` and
+`vagrant up`.
