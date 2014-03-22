@@ -1,0 +1,28 @@
+Vagrant.configure(2) do |config|
+
+    # disable mounting of vagrant folder as its not supported on xenserver
+    config.vm.synced_folder ".", "/vagrant", disabled: true
+
+    # disable checking for vbguest versions as its not supported on xenserver
+    if Vagrant.has_plugin?("vagrant-vbguest")
+      config.vbguest.auto_update = false
+    end
+
+    config.vm.network :private_network, :auto_config => false , :ip => "192.168.56.10"
+    config.vm.provision "shell", inline: $network_setup
+
+    config.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--memory", 2048]
+      v.customize [ "modifyvm", :id, "--nicpromisc2", "allow-all" ]
+    end
+
+end
+
+$network_setup = <<END_NETWORK
+hostuuid=\`xe host-list --minimal\`
+managementuuid=\`xe pif-introduce device=eth1 host-uuid=\$hostuuid\`
+
+xe pif-reconfigure-ip uuid=\$managementuuid mode=static IP=192.168.56.10 netmask=255.255.255.0
+
+xe host-management-reconfigure pif-uuid=\$managementuuid
+END_NETWORK
