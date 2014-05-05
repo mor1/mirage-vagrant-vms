@@ -13,33 +13,15 @@ First, install [Vagrant][]. On OSX I use [homebrew][] so I do this as follows:
 [homebrew]: http://brew.sh/
 [vagrant]: http://vagrantup.com/
 
-## Installing Veewee
+## Installing packer
 
-If you want to build the base box yourself, install [Ruby][] -- I use [rvm][] --
-and then install [veewee][]:
-
-    $ \curl -sSL https://get.rvm.io | bash -s stable --ruby
-    $ gem install ruby
-    $ veewee version
-    Version : 0.3.12 - use at your own risk
-
-[ruby]: https://www.ruby-lang.org/
-[rvm]: https://rvm.io/
-[veewee]: https://github.com/jedi4ever/veewee
+Download the [appropriate package](http://www.packer.io/downloads.html) and
+install it.
 
 ## Building the VM
 
-First, clone my Vagrant repo:
-
-    $ git clone https://github.com/mor1/mirage-vagrant-vms.git
-    $ cd mirage-vagrant-vms
-
-Then, build the box from the basebox:
-
-    $ veewee vbox build 'debian-7.4.0-xen'
-    $ veewee vbox export 'debian-7.4.0-xen'
-    $ mv debian-7.4.0-xen.box boxes
-    $ vagrant box add debian-7.4.0-xen boxes/debian-7.4.0-xen.box
+    $ packer build template.json
+    $ vagrant box add packer_virtualbox-iso_virtualbox.box --name debian-7.5.0-xen
 
 Finally, bring up a VM from the box and login; the first time this creates lots
 of output as the VM is created, initialised and provisioned. Administrator
