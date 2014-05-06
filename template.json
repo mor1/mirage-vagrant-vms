@@ -20,7 +20,7 @@
       ],
       "disk_size": 10140,
       "guest_os_type": "Debian_64",
-      "headless": true,
+      "headless": false,
       "http_directory": "http",
       "iso_checksum": "8fdb6715228ea90faba58cb84644d296",
       "iso_checksum_type": "md5",
@@ -85,7 +85,12 @@
     }
   ],
   "post-processors": [
-    "vagrant"
+    {
+      "type": "vagrant",
+      "compression_level": 9,
+      "output": "debian-7.5.0-xen.box",
+      "vagrantfile_template": "Vagrantfile.template"
+    }
   ],
   "provisioners": [
     {
@@ -96,7 +101,7 @@
             "scripts/base.sh",
             "scripts/vagrant.sh",
             "scripts/virtualbox.sh",
-            "scripts/puppet.sh",
+            "scripts/xen.sh",
             "scripts/cleanup.sh"
           ]
         },
@@ -105,7 +110,7 @@
             "scripts/base.sh",
             "scripts/vagrant.sh",
             "scripts/vmfusion.sh",
-            "scripts/puppet.sh",
+            "scripts/xen.sh",
             "scripts/cleanup.sh"
           ]
         }
