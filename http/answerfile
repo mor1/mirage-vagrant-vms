@@ -4,6 +4,7 @@
 	<keymap>us</keymap>
 	<source type="local"></source>
 	<root-password>password</root-password>
+	<network-backend>bridge</network-backend> 
 	<admin-interface name="eth0" proto="dhcp" />
 	<timezone>Europe/London</timezone>
 	<time-config-method>ntp</time-config-method>
