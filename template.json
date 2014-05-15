@@ -4,7 +4,6 @@
       "type": "shell",
       "scripts": [
         "scripts/vagrant.sh",
-	"scripts/base.sh",
         "scripts/cleanup.sh",
         "scripts/zerodisk.sh"
       ]
