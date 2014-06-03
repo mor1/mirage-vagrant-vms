@@ -9,7 +9,6 @@ Vagrant.configure(2) do |config|
     end
 
     config.vm.network :private_network, :auto_config => false , :ip => "192.168.56.10"
-    config.vm.provision "shell", inline: $network_setup
 
     config.vm.provider "virtualbox" do |v|
       v.customize ["modifyvm", :id, "--memory", 2048]
@@ -17,12 +16,3 @@ Vagrant.configure(2) do |config|
     end
 
 end
-
-$network_setup = <<END_NETWORK
-hostuuid=\`xe host-list --minimal\`
-managementuuid=\`xe pif-introduce device=eth1 host-uuid=\$hostuuid\`
-
-xe pif-reconfigure-ip uuid=\$managementuuid mode=static IP=192.168.56.10 netmask=255.255.255.0
-
-xe host-management-reconfigure pif-uuid=\$managementuuid
-END_NETWORK
