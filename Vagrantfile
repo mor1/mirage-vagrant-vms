@@ -15,7 +15,7 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-# Based off auto-generated Vagrantfile. Uses my mort.io IP address, shares my
+# Based off auto-generated Vagrantfile. Uses private network IP address. Shares my
 # host OSX home directory with the VM via NFS, configure the VM with a
 # sensible default RAM, and provision it via scripts if required.
 
@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "debian-7.4.0-xen"
   config.vm.network :forwarded_port, guest: 80, host: 8080
-  config.vm.network :private_network, ip: "46.43.42.137"
+  config.vm.network :private_network, ip: "192.168.77.1"
 
   config.vm.synced_folder "/Users/mort", "/mort", type: "nfs"
   config.vm.synced_folder ".", "/vagrant", disabled: true

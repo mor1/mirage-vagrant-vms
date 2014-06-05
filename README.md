@@ -67,8 +67,10 @@ not work with dom0).
 
 And that's it -- subsequently, `vagrant halt` will stop the VM (or the usual
 `shutdown -h now` when logged into it), `vagrant up` will restart it, and
-`vagrant ssh` to login. The VM is accessible from the host at the specified
-address (by default, `46.43.42.137`).
+`vagrant ssh` to login.
+
+The VM is accessible from the host at the address specified in `Vagrantfile`
+(by default, `192.168.77.1`).
 
 If you want to customise the box, I suggest looking at the `Vagrantfile` plus
 the scripts in `provisioning/`.
