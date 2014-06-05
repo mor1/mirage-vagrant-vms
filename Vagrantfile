@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "debian-7.4.0-xen"
   config.vm.network :forwarded_port, guest: 80, host: 8080
-  config.vm.network :private_network, ip: "192.168.77.1"
+  config.vm.network :private_network, ip: "192.168.77.2"
 
   config.vm.synced_folder "/Users/mort", "/mort", type: "nfs"
   config.vm.synced_folder ".", "/vagrant", disabled: true
