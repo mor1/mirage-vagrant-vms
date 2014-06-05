@@ -19,7 +19,7 @@ If you want to build the base box yourself, install [Ruby][] -- I use [rvm][] --
 and then install [veewee][]:
 
     $ \curl -sSL https://get.rvm.io | bash -s stable --ruby
-    $ gem install ruby
+    $ sudo gem install ruby
     $ veewee version
     Version : 0.3.12 - use at your own risk
 
