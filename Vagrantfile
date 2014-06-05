@@ -38,7 +38,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", path: "./provisioning/hostname.sh"
   config.vm.provision "shell", path: "./provisioning/packages.sh"
   config.vm.provision "shell", path: "./provisioning/opam.sh"
-  config.vm.provision "shell", path: "./provisioning/mort.sh"
+# The following line has been commented out since it's tightly coupled to
+# Richard's setup, but the script serve as an example for anybody who'd like to
+# build a similar setup.
+#  config.vm.provision "shell", path: "./provisioning/mort.sh"
   config.vm.provision "shell", path: "./provisioning/finish.sh"
 
 end
