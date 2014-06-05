@@ -20,6 +20,7 @@ and then install [veewee][]:
 
     $ \curl -sSL https://get.rvm.io | bash -s stable --ruby
     $ sudo gem install ruby
+    $ sudo gem install veewee
     $ veewee version
     Version : 0.3.12 - use at your own risk
 
