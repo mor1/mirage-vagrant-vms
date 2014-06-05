@@ -78,3 +78,9 @@ the scripts in `provisioning/`.
 If when logging in the first time after provisioning you find that the shared
 filesystem is not accessible (by default at `/mort`), logout, `vagrant halt` and
 `vagrant up`.
+
+## TODO
+
+Include configure script to produce Vagrantfile based on username (to mount home
+directory -- this is currently hardcoded to "/Users/mort").
+
