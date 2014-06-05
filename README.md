@@ -19,7 +19,8 @@ If you want to build the base box yourself, install [Ruby][] -- I use [rvm][] --
 and then install [veewee][]:
 
     $ \curl -sSL https://get.rvm.io | bash -s stable --ruby
-    $ gem install ruby
+    $ sudo gem install ruby
+    $ sudo gem install veewee
     $ veewee version
     Version : 0.3.12 - use at your own risk
 
@@ -66,8 +67,10 @@ not work with dom0).
 
 And that's it -- subsequently, `vagrant halt` will stop the VM (or the usual
 `shutdown -h now` when logged into it), `vagrant up` will restart it, and
-`vagrant ssh` to login. The VM is accessible from the host at the specified
-address (by default, `46.43.42.137`).
+`vagrant ssh` to login.
+
+The VM is accessible from the host at the address specified in `Vagrantfile`
+(by default, `192.168.77.1`).
 
 If you want to customise the box, I suggest looking at the `Vagrantfile` plus
 the scripts in `provisioning/`.
@@ -75,3 +78,9 @@ the scripts in `provisioning/`.
 If when logging in the first time after provisioning you find that the shared
 filesystem is not accessible (by default at `/mort`), logout, `vagrant halt` and
 `vagrant up`.
+
+## TODO
+
+Include configure script to produce Vagrantfile based on username (to mount home
+directory -- this is currently hardcoded to "/Users/mort").
+
