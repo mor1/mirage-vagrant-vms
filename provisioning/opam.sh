@@ -44,14 +44,14 @@ sudo -u vagrant bash -lc "(
     opam init --yes --auto-setup
   )"
 
-OPAM_ENV=$(sudo -u vagrant bash -lc "opam config env")
+OPAM_ENV=$(sudo -u vagrant bash -lc 'opam config env')
 sudo -u vagrant bash -lc "(
-    eval "$OPAM_ENV"
+    eval ""$OPAM_ENV""
     opam switch --yes $OCAML_VER
   )"
 
-OPAM_ENV=$(sudo -u vagrant bash -lc "opam config env")
+OPAM_ENV=$(sudo -u vagrant bash -lc 'opam config env')
 sudo -u vagrant bash -lc "(
-    eval "$OPAM_ENV"
+    eval ""$OPAM_ENV""
     opam install --yes mirage utop mirage-xen
   )"
