@@ -32,7 +32,7 @@ and then install [veewee][]:
 
 First, clone my Vagrant repo:
 
-    $ git clone https://github.com/mor1/mirage-vagrant-vms.git
+    $ git clone https://github.com/mirage/mirage-vagrant-vms.git
     $ cd mirage-vagrant-vms
 
 Then, build the box from the basebox:
