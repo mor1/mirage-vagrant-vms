@@ -1,53 +1,53 @@
 {
-  "provisioners": [
-    {
-      "type": "shell",
-      "scripts": [
-        "scripts/vagrant.sh",
-        "scripts/cleanup.sh",
-        "scripts/zerodisk.sh"
-      ]
-    }
-  ],
-  "builders": [
-    {
-      "boot_command": [
-        "<wait>menu.c32",
-        "<enter><wait><tab>",
-        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-        "<wait>",
-        "answerfile=http://{{ .HTTPIP }}:{{ .HTTPPort }}/answerfile install ",
-        "--- /install.img<enter>"
-      ],
-      "boot_wait": "5s",
-      "guest_additions_mode": "disable",
-      "headless": false,
-      "disk_size": 51200,
-      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-      "guest_os_type": "RedHat_64",
-      "http_directory": "http",
-      "iso_checksum": "d63e4c917da22af69ff8f1679c794dce",
-      "iso_checksum_type": "md5",
-      "iso_url": "http://downloadns.citrix.com.edgesuite.net/akdlm/8159/XenServer-6.2.0-install-cd.iso",
-      "shutdown_command": "/sbin/shutdown -hP now",
-      "ssh_password": "password",
-      "ssh_port": 22,
-      "ssh_username": "root",
-      "ssh_wait_timeout": "10000s",
-      "type": "virtualbox-iso",
-      "vm_name": "XenServer",
-      "vboxmanage": [
-        ["modifyvm", "{{.Name}}", "--memory", "2048"],
-        ["modifyvm", "{{.Name}}", "--cpus", "1"]
-      ]
-    }
-  ],
-  "post-processors": [
-    {
-      "compression_level": 9,
-      "output": "XenServer.box",
-      "type": "vagrant",
-      "vagrantfile_template": "Vagrantfile.template"
-    }
-  ]
+    "provisioners": [
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/vagrant.sh",
+                "scripts/cleanup.sh",
+                "scripts/zerodisk.sh"
+            ]
+        }
+    ],
+    "builders": [
+        {
+            "boot_command": [
+                "<wait>menu.c32",
+                "<enter><wait><tab>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<wait>",
+                "answerfile=http://{{ .HTTPIP }}:{{ .HTTPPort }}/answerfile install ",
+                "--- /install.img<enter>"
+            ],
+            "boot_wait": "5s",
+            "guest_additions_mode": "disable",
+            "headless": false,
+            "disk_size": 51200,
+            "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+            "guest_os_type": "RedHat_64",
+            "http_directory": "http",
+            "iso_checksum": "d63e4c917da22af69ff8f1679c794dce",
+            "iso_checksum_type": "md5",
+            "iso_url": "http://downloadns.citrix.com.edgesuite.net/akdlm/8159/XenServer-6.2.0-install-cd.iso",
+            "shutdown_command": "/sbin/shutdown -hP now",
+            "ssh_password": "password",
+            "ssh_port": 22,
+            "ssh_username": "root",
+            "ssh_wait_timeout": "10000s",
+            "type": "virtualbox-iso",
+            "vm_name": "XenServer",
+            "vboxmanage": [
+                ["modifyvm", "{{.Name}}", "--memory", "2048"],
+                ["modifyvm", "{{.Name}}", "--cpus", "1"]
+            ]
+        }
+    ],
+    "post-processors": [
+        {
+            "compression_level": 9,
+            "output": "XenServer.box",
+            "type": "vagrant",
+            "vagrantfile_template": "Vagrantfile.template"
+        }
+    ]
 }
