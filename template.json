@@ -4,6 +4,8 @@
             "type": "shell",
             "scripts": [
                 "scripts/vagrant.sh",
+                "scripts/hotfix-XS62ESP1.sh",
+                "scripts/hotfix-XS62ESP1004.sh",
                 "scripts/cleanup.sh",
                 "scripts/zerodisk.sh"
             ]

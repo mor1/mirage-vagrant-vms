@@ -1,3 +1,7 @@
+sleep 60
+
+rm -rf /tmp/hotfixes
+
 cat <<EOF > /etc/sysconfig/network-scripts/ifcfg-eth0
 DEVICE=eth0
 BOOTPROTO=dhcp
