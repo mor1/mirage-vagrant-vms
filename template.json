@@ -4,10 +4,10 @@
             "type": "shell",
             "scripts": [
                 "scripts/vagrant.sh",
-                "scripts/hotfix-XS62ESP1.sh",
+		"scripts/hotfix-XS62ESP1.sh",
 		"scripts/reboot.sh",
-                "scripts/hotfix-XS62ESP1004.sh",
-                "scripts/reboot.sh",
+		"scripts/hotfix-XS62ESP1004.sh",
+		"scripts/reboot.sh",
 		"scripts/cleanup.sh",
                 "scripts/zerodisk.sh"
             ]
