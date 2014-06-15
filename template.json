@@ -8,8 +8,8 @@
 		"scripts/reboot.sh",
                 "scripts/hotfix-XS62ESP1004.sh",
                 "scripts/reboot.sh",
-		"scripts/cleanup.sh",
-                "scripts/zerodisk.sh"
+		"scripts/zerodisk.sh",
+                "scripts/cleanup.sh"
             ]
         }
     ],
