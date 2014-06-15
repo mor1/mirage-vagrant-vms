@@ -1,0 +1,2 @@
+reboot
+sleep 60
