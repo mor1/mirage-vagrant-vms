@@ -22,6 +22,7 @@ install it.
 
     $ packer build template.json
     $ vagrant box add debian-7.5.0-xen.box --name debian-7.5.0-xen
+    $ vagrant init debian-7.5.0-xen
 
 Finally, bring up a VM from the box and login; the first time this creates lots
 of output as the VM is created, initialised and provisioned. Administrator
