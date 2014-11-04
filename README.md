@@ -22,7 +22,7 @@ install it.
 
 Create a directory that will be shared between the host and guest systems.
 
-    mkdir /tmp/mirage-vagrant-vms
+    $ mkdir /tmp/mirage-vagrant-vms
 
 On the guest system this will be shared as `/host`.
 To use a different directory for host/guest/both, then modify
