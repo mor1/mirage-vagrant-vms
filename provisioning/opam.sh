@@ -21,7 +21,7 @@ set -ex
 
 OCAML_VER=4.01.0
 
-OPAM_VER=1.2
+OPAM_VER=1.2.0
 OPAM_PKG=opam-full-${OPAM_VER}.tar.gz
 OPAM_URL=https://github.com/ocaml/opam/releases/download/${OPAM_VER}/${OPAM_PKG}
 
@@ -33,6 +33,8 @@ sudo -u vagrant bash -lc "(
         wget $OPAM_URL
         tar xzvf opam-full-${OPAM_VER}.tar.gz --strip-components=1
 
+        ./configure
+        make lib-ext
         ./configure
         make
         sudo make install
