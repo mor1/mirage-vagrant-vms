@@ -13,35 +13,33 @@ First, install [Vagrant][]. On OSX I use [homebrew][] so I do this as follows:
 [homebrew]: http://brew.sh/
 [vagrant]: http://vagrantup.com/
 
-## Installing Veewee
+## Installing packer
 
-If you want to build the base box yourself, install [Ruby][] -- I use [rvm][] --
-and then install [veewee][]:
+Download the [appropriate package](http://www.packer.io/downloads.html) and
+install it.
 
-    $ \curl -sSL https://get.rvm.io | bash -s stable --ruby
-    $ sudo gem install ruby
-    $ sudo gem install veewee
-    $ veewee version
-    Version : 0.3.12 - use at your own risk
-
-[ruby]: https://www.ruby-lang.org/
-[rvm]: https://rvm.io/
-[veewee]: https://github.com/jedi4ever/veewee
-
-## Building the VM
-
-First, clone my Vagrant repo:
+## Clone the Mirage Vagrant repo
 
     $ git clone https://github.com/mirage/mirage-vagrant-vms.git
     $ cd mirage-vagrant-vms
 
-Then, build the box from the basebox:
+## Before building the VM
 
-    $ veewee vbox build 'debian-7.4.0-xen'
-    $ veewee vbox export 'debian-7.4.0-xen'
-    $ mv debian-7.4.0-xen.box boxes
-    $ vagrant box add debian-7.4.0-xen boxes/debian-7.4.0-xen.box
+Create a directory that will be shared between the host and guest systems.
 
+    $ mkdir /tmp/mirage-vagrant-vms
+
+On the guest system this will be shared as `/host`.
+To use a different directory for host/guest/both, then modify
+`Vagrantfile.template`.
+
+## Building the VM
+
+    $ packer build template.json
+    $ vagrant box add debian-7.5.0-xen.box --name debian-7.5.0-xen
+    $ vagrant init debian-7.5.0-xen
+
+The last command will generate a file called `Vagrantfile`.
 Finally, bring up a VM from the box and login; the first time this creates lots
 of output as the VM is created, initialised and provisioned. Administrator
 privilege is required to create the NFS mounts on the host so that the host
@@ -67,16 +65,14 @@ not work with dom0).
 
 And that's it -- subsequently, `vagrant halt` will stop the VM (or the usual
 `shutdown -h now` when logged into it), `vagrant up` will restart it, and
-`vagrant ssh` to login.
+`vagrant ssh` to login. The VM is accessible from the host at the specified
+address (by default, `192.168.77.2`).
 
-The VM is accessible from the host at the address specified in `Vagrantfile`
-(by default, `192.168.77.1`).
-
-If you want to customise the box, I suggest looking at the `Vagrantfile` plus
+If you want to customise the box, I suggest looking at the `Vagrantfile.template` plus
 the scripts in `provisioning/`.
 
 If when logging in the first time after provisioning you find that the shared
-filesystem is not accessible (by default at `/mort`), logout, `vagrant halt` and
+filesystem is not accessible (by default at `/host`), logout, `vagrant halt` and
 `vagrant up`.
 
 ## TODO
