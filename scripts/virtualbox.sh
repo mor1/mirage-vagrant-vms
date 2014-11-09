@@ -15,20 +15,11 @@ if test -f .vbox_version ; then
   apt-get -y install --no-install-recommends libdbus-1-3
 
   # Install the VirtualBox guest additions
-  VBOX_VERSION=$(cat .vbox_version)
-  VBOX_ISO=VBoxGuestAdditions_$VBOX_VERSION.iso
-  mount -o loop $VBOX_ISO /mnt
+  mount -o loop VBoxGuestAdditions.iso /mnt
   yes|sh /mnt/VBoxLinuxAdditions.run
   umount /mnt
-
+  rm -f VBoxLinuxAdditions.iso
 
   # Start the newly build driver
   /etc/init.d/vboxadd start
-
-  # Make a temporary mount point
-  mkdir /tmp/veewee-validation
-
-  # Test mount the veewee-validation
-  mount -t vboxsf veewee-validation /tmp/veewee-validation
-
 fi
