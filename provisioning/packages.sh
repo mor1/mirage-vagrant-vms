@@ -36,4 +36,5 @@ apt-get install -y build-essential m4                        # build tools
 apt-get install -y xen-tools                                 # xen client tools
 apt-get install -y ocaml ocaml-native-compilers camlp4-extra # ocaml
 apt-get install -y aspcud                                    # opam solver
+apt-get install -y ssh                                       # ssh and scp
 apt-get install -y tcpdump                                   # for debugging...

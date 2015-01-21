@@ -21,7 +21,7 @@ set -ex
 
 OCAML_VER=4.01.0
 
-OPAM_VER=1.1.1
+OPAM_VER=1.2.0
 OPAM_PKG=opam-full-${OPAM_VER}.tar.gz
 OPAM_URL=https://github.com/ocaml/opam/releases/download/${OPAM_VER}/${OPAM_PKG}
 
@@ -31,8 +31,10 @@ sudo -u vagrant bash -lc "(
         cd opam-src
 
         wget $OPAM_URL
-        tar xzvf opam-full-1.1.1.tar.gz --strip-components=1
+        tar xzvf opam-full-${OPAM_VER}.tar.gz --strip-components=1
 
+        ./configure
+        make lib-ext
         ./configure
         make
         sudo make install
@@ -44,14 +46,14 @@ sudo -u vagrant bash -lc "(
     opam init --yes --auto-setup
   )"
 
-OPAM_ENV=$(sudo -u vagrant bash -lc "opam config env")
+OPAM_ENV=$(sudo -u vagrant bash -lc 'eval $(opam config env)')
 sudo -u vagrant bash -lc "(
-    eval "$OPAM_ENV"
+    eval ""$OPAM_ENV""
     opam switch --yes $OCAML_VER
   )"
 
-OPAM_ENV=$(sudo -u vagrant bash -lc "opam config env")
+OPAM_ENV=$(sudo -u vagrant bash -lc 'eval $(opam config env)')
 sudo -u vagrant bash -lc "(
-    eval "$OPAM_ENV"
+    eval ""$OPAM_ENV""
     opam install --yes mirage utop mirage-xen
   )"

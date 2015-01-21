@@ -15,7 +15,7 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-# Based off auto-generated Vagrantfile. Uses my mort.io IP address, shares my
+# Based off auto-generated Vagrantfile. Uses private network IP address. Shares my
 # host OSX home directory with the VM via NFS, configure the VM with a
 # sensible default RAM, and provision it via scripts if required.
 
@@ -23,11 +23,11 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "debian-7.4.0-xen"
+  config.vm.box = "debian-7.5.0-xen"
   config.vm.network :forwarded_port, guest: 80, host: 8080
-  config.vm.network :private_network, ip: "46.43.42.137"
+  config.vm.network :private_network, ip: "192.168.77.2"
 
-  config.vm.synced_folder "/Users/mort", "/mort", type: "nfs"
+  config.vm.synced_folder "/tmp/mirage-vagrant-vms", "/host", type: "nfs"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.provider :virtualbox do |vb|
@@ -38,7 +38,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", path: "./provisioning/hostname.sh"
   config.vm.provision "shell", path: "./provisioning/packages.sh"
   config.vm.provision "shell", path: "./provisioning/opam.sh"
-  config.vm.provision "shell", path: "./provisioning/mort.sh"
+# The following line has been commented out since it's tightly coupled to
+# @mor1's setup, but the script serve as an example for anybody who'd like to
+# build a similar setup.
+#  config.vm.provision "shell", path: "./provisioning/mort.sh"
   config.vm.provision "shell", path: "./provisioning/finish.sh"
 
 end

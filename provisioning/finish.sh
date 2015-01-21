@@ -19,5 +19,6 @@
 
 set -ex
 
-rm ~vagrant/*.sh
+# FIXME is next line actually needed?
+rm -f ~vagrant/*.sh
 reboot
