@@ -98,20 +98,20 @@
             "override": {
                 "virtualbox-iso": {
                     "scripts": [
-                        "scripts/base.sh",
-                        "scripts/vagrant.sh",
-                        "scripts/virtualbox.sh",
-                        "scripts/xen.sh",
-                        "scripts/cleanup.sh"
+                        "scripts/debian/base.sh",
+                        "scripts/common/vagrant.sh",
+                        "scripts/common/virtualbox.sh",
+                        "scripts/common/xen.sh",
+                        "scripts/debian/cleanup.sh"
                     ]
                 },
                 "vmware-iso": {
                     "scripts": [
-                        "scripts/base.sh",
-                        "scripts/vagrant.sh",
-                        "scripts/vmfusion.sh",
-                        "scripts/xen.sh",
-                        "scripts/cleanup.sh"
+                        "scripts/debian/base.sh",
+                        "scripts/common/vagrant.sh",
+                        "scripts/common/vmfusion.sh",
+                        "scripts/common/xen.sh",
+                        "scripts/debian/cleanup.sh"
                     ]
                 }
             },

@@ -1,6 +1,7 @@
 {
     "builders": [
         {
+            "type": "virtualbox-iso",
             "boot_command": [
                 "<esc><wait>",
                 "install <wait>",
@@ -30,7 +31,6 @@
             "ssh_port": 22,
             "ssh_username": "vagrant",
             "ssh_wait_timeout": "10000s",
-            "type": "virtualbox-iso",
             "vboxmanage": [
                 [
                     "modifyvm",
