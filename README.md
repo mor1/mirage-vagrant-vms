@@ -1,6 +1,13 @@
 # Mirage Virtualbox VMs via Vagrant
 
-## Installing Vagrant
+## Setup
+
+### Clone this repo
+
+    $ git clone https://github.com/mirage/mirage-vagrant-vms.git
+    $ cd mirage-vagrant-vms
+
+### Installing Vagrant
 
 First, install [Vagrant][]. On OSX I use [homebrew][] so I do this as follows:
 
@@ -13,7 +20,7 @@ First, install [Vagrant][]. On OSX I use [homebrew][] so I do this as follows:
 [homebrew]: http://brew.sh/
 [vagrant]: http://vagrantup.com/
 
-## Installing packer
+### Installing packer
 
 Download the [appropriate package](http://www.packer.io/downloads.html) and
 install it.
@@ -23,28 +30,20 @@ On OSX,
     $ brew tap homebrew/binary
     $ brew install packer
 
-## Clone the Mirage Vagrant repo
-
-    $ git clone https://github.com/mirage/mirage-vagrant-vms.git
-    $ cd mirage-vagrant-vms
-
-## Before building the VM
+### Before building the VM
 
 Create a directory that will be shared between the host and guest systems.
 
     $ mkdir /tmp/mirage-vagrant-vms
 
-On the guest system this will be shared as `/host`.
-To use a different directory for host/guest/both, then modify
-`Vagrantfile.template`.
+On the guest system this will be shared as `/host`. To use a different directory
+for host/guest/both, then modify `Vagrantfile.template`.
 
 ## Building the VM
 
-    $ packer build templates/debian-7.8.0-amd64.json
-    $ vagrant box add boxes/debian-7.8.0-xen.box --name debian-7.8.0-xen
-    $ vagrant init debian-7.8.0-xen
+    $ packer build templates/ubuntu-14.10-amd64.json
+    $ cp Vagrantfile.ubuntu-14.10-xen Vagrantfile
 
-The last command will generate a file called `Vagrantfile`.
 Finally, bring up a VM from the box and login; the first time this creates lots
 of output as the VM is created, initialised and provisioned. Administrator
 privilege is required to create the NFS mounts on the host so that the host

@@ -35,13 +35,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
 
-  config.vm.provision "shell", path: "./provisioning/hostname.sh"
+  config.vm.provision "shell", path: "./provisioning/debian/hostname.sh"
   config.vm.provision "shell", path: "./provisioning/packages.sh"
   config.vm.provision "shell", path: "./provisioning/opam.sh"
-# The following line has been commented out since it's tightly coupled to
-# @mor1's setup, but the script serve as an example for anybody who'd like to
-# build a similar setup.
-#  config.vm.provision "shell", path: "./provisioning/mort.sh"
   config.vm.provision "shell", path: "./provisioning/finish.sh"
 
 end

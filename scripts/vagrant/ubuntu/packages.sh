@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright (c) 2014 Richard Mortier <mort@cantab.net>
+# Copyright (c) 2015 Richard Mortier <mort@cantab.net>
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
 # with or without fee is hereby granted, provided that the above copyright
@@ -15,14 +15,17 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-# Clone my rc-files repo and install. Most people probably don't want this.
+# Configure `apt` to use UK mirror, install a recent `git` from backports and
+# base system packages.
 
 set -ex
 
-git clone git://github.com/mor1/rc-files src/rc-files || true
-chown -R vagrant:vagrant src
+BACKPORTS=http://http.us.debian.org/debian
+MIRROR=ftp.uk.debian.org
 
-cd src/rc-files
-rm -f ~vagrant/.bashrc ~vagrant/.profile ~vagrant/.ocamlinit
-mv ~vagrant/.ssh/authorized_keys ./ssh && rm -rf ~vagrant/.ssh
-sudo -u vagrant ./install.sh
+apt-get update
+apt-get install build-essential git m4
+apt-get install xen-hypervisor-4.4-amd64 bridge-utils
+apt-get install \
+        ocaml-compiler-libs ocaml-interp ocaml-base-nox ocaml-base \
+        ocaml ocaml-nox ocaml-native-compilers camlp4 camlp4-extra

@@ -15,12 +15,8 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-# Install OPAM, the latest stable OCaml, and the base Mirage packages for Xen.
+# install mirage in opam
 
 set -ex
-
-sudo apt-get install zeroinstall-injector         # install 0install
-0install add opam http://tools.ocaml.org/opam.xml # install opam
-
-PATH=~/bin:$PATH
-opam init
+apt-get install libssl-dev pkg-config # required by many mirage apps
+opam install mirage -v

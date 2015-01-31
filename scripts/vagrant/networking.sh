@@ -15,12 +15,15 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-# Install OPAM, the latest stable OCaml, and the base Mirage packages for Xen.
+# configure networking
 
 set -ex
 
-sudo apt-get install zeroinstall-injector         # install 0install
-0install add opam http://tools.ocaml.org/opam.xml # install opam
+apt-get install dnsmasq
 
-PATH=~/bin:$PATH
-opam init
+cat <<EOF
+interface=br0
+dhcp-range=192.168.56.150,192.168.56.200,1h
+EOF >> /etc/dnsmasq.conf
+
+apt-get install avahi-daemon

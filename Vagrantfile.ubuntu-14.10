@@ -1,0 +1,45 @@
+# -*- mode: ruby -*-
+#
+# Copyright (c) 2015 Richard Mortier <mort@cantab.net>
+#
+# Permission to use, copy, modify, and distribute this software for any purpose
+# with or without fee is hereby granted, provided that the above copyright
+# notice and this permission notice appear in all copies.
+#
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+# REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+# AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+# INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+# OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+# PERFORMANCE OF THIS SOFTWARE.
+#
+
+# Based off auto-generated Vagrantfile. Uses private network IP address. Shares
+# my host OSX home directory with the VM via NFS, configure the VM with a
+# sensible default RAM, and provision it via scripts if required.
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.box = "ubuntu-14.10-xen"
+
+  config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :private_network, ip: "192.168.77.2"
+
+  config.vm.synced_folder "/tmp/mirage-vagrant-vms", "/host", type: "nfs"
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  config.vm.provider :virtualbox do |vb|
+    vb.gui = true # uncomment to observe boot via Virtualbox GUI
+    vb.customize ["modifyvm", :id, "--memory", "1024"]
+  end
+
+  config.vm.provision "shell", path: "scripts/vagrant/ubuntu/hostname.sh"
+  config.vm.provision "shell", path: "scripts/vagrant/ubuntu/packages.sh"
+  config.vm.provision "shell", path: "scripts/vagrant/opam.sh"
+  config.vm.provision "shell", path: "scripts/vagrant/mirage.sh"
+  config.vm.provision "shell", path: "scripts/vagrant/finish.sh"
+
+end

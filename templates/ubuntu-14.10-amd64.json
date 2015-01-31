@@ -4,26 +4,29 @@
             "type": "virtualbox-iso",
             "guest_os_type": "Ubuntu_64",
             "iso_urls": [
-                "http://archive.ubuntu.com/ubuntu/dists/utopic/main/installer-amd64/current/images/netboot/mini.iso"
+                "http://releases.ubuntu.com/14.10/ubuntu-14.10-server-amd64.iso"
             ],
-            "iso_checksum": "4f783f3917ed4c663c9a983f4ee046fc",
+            "iso_checksum": "91bd1cfba65417bfa04567e4f64b5c55",
             "iso_checksum_type": "md5",
             "ssh_username": "vagrant",
             "ssh_password": "vagrant",
+            "ssh_wait_timeout": "60m",
             "http_directory": "http/ubuntu/",
             "headless": false,
             "boot_wait": "5s",
             "boot_command": [
-                "<esc><wait>",
-                "linux tasks=standard pkgsel/language-pack-patterns= ",
-                "pkgsel/install-language-support=false ",
-                "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/preseed.cfg ",
-                "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
-                "fb=false debconf/frontend=noninteractive ",
-                "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
-                "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+                "<esc><esc><enter><wait>",
+                "/install/vmlinuz noapic ",
+                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+                "debian-installer=en_US auto locale=en_US ",
+                "kbd-chooser/method=us ",
                 "hostname={{.Name}} ",
-                "initrd=initrd.gz -- <enter>"
+                "fb=false debconf/frontend=noninteractive ",
+                "keyboard-configuration/modelcode=SKIP ",
+                "keyboard-configuration/layout=USA ",
+                "keyboard-configuration/variant=USA ",
+                "console-setup/ask_detect=false ",
+                "initrd=/install/initrd.gz -- <enter>"
             ],
             "shutdown_command": "echo 'vagrant' | sudo -S -E shutdown -P now",
             "hard_drive_interface": "sata",
@@ -48,7 +51,7 @@
         {
             "type": "vagrant",
             "compression_level": 9,
-            "output": "../boxes/{{.BuildName}}.box"
+            "output": "boxes/ubuntu-14.10-amd64.box"
         }
     ],
     "provisioners": [

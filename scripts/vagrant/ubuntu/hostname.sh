@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright (c) 2015 Richard Mortier <mort@cantab.net>
+# Copyright (c) 2014 Richard Mortier <mort@cantab.net>
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
 # with or without fee is hereby granted, provided that the above copyright
@@ -15,12 +15,10 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-# Install OPAM, the latest stable OCaml, and the base Mirage packages for Xen.
+# Set the VM hostname
 
 set -ex
 
-sudo apt-get install zeroinstall-injector         # install 0install
-0install add opam http://tools.ocaml.org/opam.xml # install opam
+HOSTNAME=unicorn-xen
 
-PATH=~/bin:$PATH
-opam init
+echo "$HOSTNAME" >| /etc/hostname
