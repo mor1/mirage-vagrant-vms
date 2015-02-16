@@ -4,9 +4,6 @@
             "type": "shell",
             "scripts": [
                 "scripts/vagrant.sh",
-		"scripts/hotfix-XS62ESP1.sh",
-		"scripts/reboot.sh",
-		"scripts/hotfix-XS62ESP1004.sh",
 		"scripts/reboot.sh",
 		"scripts/cleanup.sh",
                 "scripts/zerodisk.sh"
@@ -30,9 +27,9 @@
             "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
             "guest_os_type": "RedHat_64",
             "http_directory": "http",
-            "iso_checksum": "d63e4c917da22af69ff8f1679c794dce",
+            "iso_checksum": "b6a5ce472a0010f5847669e624f06326",
             "iso_checksum_type": "md5",
-            "iso_url": "http://downloadns.citrix.com.edgesuite.net/akdlm/8159/XenServer-6.2.0-install-cd.iso",
+            "iso_url": "http://downloadns.citrix.com.edgesuite.net/akdlm/10175/XenServer-6.5.0-xenserver.org-install-cd.iso",
             "shutdown_command": "/sbin/shutdown -hP now",
             "ssh_password": "password",
             "ssh_port": 22,
