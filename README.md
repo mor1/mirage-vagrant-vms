@@ -41,8 +41,8 @@ for host/guest/both, then modify `Vagrantfile.template`.
 
 ## Building the VM
 
-    $ packer build templates/ubuntu-14.10-amd64.json
-    $ cp Vagrantfile.ubuntu-14.10-xen Vagrantfile
+    $ packer build templates/ubuntu-14.04-amd64.json
+    $ cp Vagrantfile.ubuntu-14.04-xen Vagrantfile
 
 Finally, bring up a VM from the box and login; the first time this creates lots
 of output as the VM is created, initialised and provisioned. Administrator

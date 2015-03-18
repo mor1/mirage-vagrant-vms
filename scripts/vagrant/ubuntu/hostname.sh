@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # Copyright (c) 2014 Richard Mortier <mort@cantab.net>
 #
@@ -19,6 +19,6 @@
 
 set -ex
 
-HOSTNAME=unicorn-xen
+HOSTNAME=tahr-xen
 
 echo "$HOSTNAME" >| /etc/hostname

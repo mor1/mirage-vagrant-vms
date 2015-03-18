@@ -1,6 +1,6 @@
 apt-get -y update
 
-apt-get install -y xen-linux-system
+apt-get install -y xen-linux-system xen-system-amd64
 
 dpkg-divert --divert /etc/grub.d/08_linux_xen --rename /etc/grub.d/20_linux_xen
 
