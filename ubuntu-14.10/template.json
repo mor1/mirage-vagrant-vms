@@ -3,17 +3,20 @@
         {
             "type": "virtualbox-iso",
             "guest_os_type": "Ubuntu_64",
-            "iso_urls": [
-                "http://releases.ubuntu.com/14.10/ubuntu-14.10-server-amd64.iso"
-            ],
+            "disk_size": 40960,
+
             "iso_checksum": "91bd1cfba65417bfa04567e4f64b5c55",
             "iso_checksum_type": "md5",
+            "iso_url": "http://releases.ubuntu.com/14.10/ubuntu-14.10-server-amd64.iso",
+
             "ssh_username": "vagrant",
             "ssh_password": "vagrant",
             "ssh_wait_timeout": "60m",
-            "http_directory": "http/ubuntu/",
+
             "headless": false,
-            "boot_wait": "5s",
+            "http_directory": "ubuntu-14.10/",
+
+            "boot_wait": "10s",
             "boot_command": [
                 "<esc><esc><enter><wait>",
                 "/install/vmlinuz noapic ",
@@ -28,9 +31,9 @@
                 "console-setup/ask_detect=false ",
                 "initrd=/install/initrd.gz -- <enter>"
             ],
+
             "shutdown_command": "echo 'vagrant' | sudo -S -E shutdown -P now",
             "hard_drive_interface": "sata",
-            "disk_size": 40960,
             "vboxmanage": [
                 ["modifyvm", "{{.Name}}", "--memory", "2048"],
                 ["modifyvm", "{{.Name}}", "--cpus", "1"]
@@ -42,21 +45,6 @@
             "type": "vagrant",
             "compression_level": 9,
             "output": "boxes/ubuntu-14.10-amd64.box"
-        }
-    ],
-    "provisioners": [
-        {
-            "type": "shell",
-            "execute_command": "echo 'vagrant' | sudo -S -E sh {{.Path}}",
-            "override": {
-                "virtualbox-iso": {
-                    "scripts": [
-                        "scripts/ubuntu/base.sh",
-                        "scripts/common/vagrant.sh",
-                        "scripts/common/virtualbox.sh"
-                    ]
-                }
-            }
         }
     ]
 }

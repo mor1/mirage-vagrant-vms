@@ -33,13 +33,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider :virtualbox do |vb|
     vb.gui = true # uncomment to observe boot via Virtualbox GUI
-    vb.customize ["modifyvm", :id, "--memory", "2048"]
+    # vb.customize ["modifyvm", :id, "--memory", "2048"]
   end
 
-  config.vm.provision "shell", path: "scripts/vagrant/ubuntu/hostname.sh"
-  config.vm.provision "shell", path: "scripts/vagrant/ubuntu/packages.sh"
-  config.vm.provision "shell", path: "scripts/vagrant/opam.sh"
-  config.vm.provision "shell", path: "scripts/vagrant/mirage.sh"
-  config.vm.provision "shell", path: "scripts/vagrant/finish.sh"
+  # config.vm.provision "shell", path: "scripts/vagrant/ubuntu/hostname.sh"
+  # config.vm.provision "shell", path: "scripts/vagrant/ubuntu/packages.sh"
+  # config.vm.provision "shell", path: "scripts/vagrant/opam.sh"
+  # config.vm.provision "shell", path: "scripts/vagrant/mirage.sh"
+  # config.vm.provision "shell", path: "scripts/vagrant/finish.sh"
 
 end
