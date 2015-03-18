@@ -46,7 +46,7 @@
         {
             "type": "vagrant",
             "compression_level": 9,
-            "output": "boxes/debian-7.8.0-xen.box"
+            "output": "boxes/debian-7.8.0-amd64.box"
         }
     ]
 }
