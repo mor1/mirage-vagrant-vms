@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # Copyright (c) 2015 Richard Mortier <mort@cantab.net>
 #
@@ -15,15 +15,11 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-# configure networking
-
 set -ex
 
-apt-get install dnsmasq
+sudo apt-get install -y dnsmasq avahi-daemon # networking
 
 cat <<EOF
 interface=br0
 dhcp-range=192.168.56.150,192.168.56.200,1h
 EOF >> /etc/dnsmasq.conf
-
-apt-get install avahi-daemon

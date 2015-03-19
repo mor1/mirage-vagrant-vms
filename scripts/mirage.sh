@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # Copyright (c) 2015 Richard Mortier <mort@cantab.net>
 #
@@ -15,8 +15,6 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-# install mirage in opam
-
 set -ex
-apt-get install libssl-dev pkg-config # required by many mirage apps
-opam install mirage -v
+sudo apt-get install -y libssl-dev pkg-config # required by many mirage apps
+opam install mirage --yes                     # install mirage

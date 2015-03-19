@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2015 Richard Mortier <mort@cantab.net>
+# Copyright (c) 2014 Richard Mortier <mort@cantab.net>
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
 # with or without fee is hereby granted, provided that the above copyright
@@ -15,14 +15,10 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-apt-get install -y xen-linux-system xen-system-amd64 xen-tools
+apt-get update -y
+apt-get upgrade -y
 
-dpkg-divert --divert /etc/grub.d/08_linux_xen --rename /etc/grub.d/20_linux_xen
-
-update-grub
-
-echo >> /etc/network/interfaces <<EOF
-auto xenbr0
-iface xenbr0 inet dhcp
-  bridge_ports eth0
-EOF
+apt-get install -y linux-headers-$(uname -r) build-essential m4 # dev environment
+apt-get install -y ssh                                          # ssh and scp
+apt-get install -y tcpdump                                      # for debugging
+apt-get install -y ntp                                          # sanity

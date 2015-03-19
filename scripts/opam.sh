@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # Copyright (c) 2015 Richard Mortier <mort@cantab.net>
 #
@@ -15,12 +15,14 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-# Install OPAM, the latest stable OCaml, and the base Mirage packages for Xen.
-
 set -ex
 
-sudo apt-get install zeroinstall-injector         # install 0install
-0install add opam http://tools.ocaml.org/opam.xml # install opam
+rm -rf ~/.config ~/bin
+
+sudo apt-get install -y ocaml ocaml-native-compilers camlp4-extra # ocaml
+sudo apt-get install -y aspcud curl zeroinstall-injector          # 0install
+0install add opam http://tools.ocaml.org/opam.xml                 # opam
 
 PATH=~/bin:$PATH
-opam init
+opam init --verbose --auto-setup --yes
+eval $(opam config env)
