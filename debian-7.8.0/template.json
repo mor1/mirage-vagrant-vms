@@ -20,19 +20,19 @@
             "boot_command": [
                 "<esc><wait>",
                 "install <wait>",
-                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
-                "debian-installer=en_US <wait>",
-                "auto <wait>",
-                "locale=en_US <wait>",
-                "kbd-chooser/method=us <wait>",
-                "netcfg/get_hostname={{ .Name }} <wait>",
-                "netcfg/get_domain=vagrantup.com <wait>",
-                "fb=false <wait>",
-                "debconf/frontend=noninteractive <wait>",
-                "console-setup/ask_detect=false <wait>",
-                "console-keymaps-at/keymap=us <wait>",
-                "keyboard-configuration/xkb-keymap=us <wait>",
-                "<enter><wait>"
+                " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
+                " debian-installer=en_US <wait>",
+                " auto <wait>",
+                " locale=en_US <wait>",
+                " kbd-chooser/method=us <wait>",
+                " netcfg/get_hostname=wheezy-xen<wait> ",
+                " netcfg/get_domain=local<wait> ",
+                " fb=false <wait>",
+                " debconf/frontend=noninteractive <wait>",
+                " console-setup/ask_detect=false <wait>",
+                " console-keymaps-at/keymap=us <wait>",
+                " keyboard-configuration/xkb-keymap=us <wait>",
+                " <enter><wait>"
             ],
 
             "shutdown_command": "echo 'halt -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
@@ -47,6 +47,22 @@
             "type": "vagrant",
             "compression_level": 9,
             "output": "boxes/debian-7.8.0-amd64.box"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "execute_command": "echo 'vagrant' | sudo -S -E sh {{.Path}}",
+            "override": {
+                "virtualbox-iso": {
+                    "scripts": [
+                        "scripts/base.sh",
+                        "scripts/base-debian.sh",
+                        "scripts/vagrant.sh",
+                        "scripts/virtualbox.sh"
+                    ]
+                }
+            }
         }
     ]
 }
