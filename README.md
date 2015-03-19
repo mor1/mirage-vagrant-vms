@@ -7,7 +7,10 @@
     $ git clone https://github.com/mirage/mirage-vagrant-vms.git
     $ cd mirage-vagrant-vms
 
-### Installing Vagrant
+This currently contains support for Ubuntu 14.04 LTS (Trusty Tahr), Ubuntu 14.10
+(Utopic Unicorn) and Debian 7.8.0 ("wheezy").
+
+### Install `vagrant`
 
 First, install [Vagrant][]. On OSX I use [homebrew][] so I do this as follows:
 
@@ -20,64 +23,29 @@ First, install [Vagrant][]. On OSX I use [homebrew][] so I do this as follows:
 [homebrew]: http://brew.sh/
 [vagrant]: http://vagrantup.com/
 
-### Installing packer
-
-Download the [appropriate package](http://www.packer.io/downloads.html) and
-install it.
-
-On OSX,
+### Install `packer`
 
     $ brew tap homebrew/binary
     $ brew install packer
 
-### Before building the VM
+## Use
 
-Create a directory that will be shared between the host and guest systems.
+Build a new box using `packer`:
 
-    $ mkdir /tmp/mirage-vagrant-vms
+    $ make box-{ubuntu-14.04,ubuntu-14.10,debian-7.8.0}
 
-On the guest system this will be shared as `/host`. To use a different directory
-for host/guest/both, then modify `Vagrantfile.template`.
+Bring it up and provision it using `vagrant`:
 
-## Building the VM
+    $ make vagrant-{ubuntu-14.04,ubuntu-14.10,debian-7.8.0}
 
-    $ packer build templates/ubuntu-14.04-amd64.json
-    $ cp Vagrantfile.ubuntu-14.04-xen Vagrantfile
+Connect to it via `ssh`:
 
-Finally, bring up a VM from the box and login; the first time this creates lots
-of output as the VM is created, initialised and provisioned. Administrator
-privilege is required to create the NFS mounts on the host so that the host
-filesystem can be shared with dom0 in the VM (the VirtualBox guest additions do
-not work with dom0).
+    $ make ssh-{ubuntu-14.04,ubuntu-14.10,debian-7.8.0}
 
-    $ vagrant up
-    ...
-    $ vagrant ssh
-    Linux wheezy-xen 3.2.0-4-amd64 #1 SMP Debian 3.2.54-2 x86_64
+Subsequently, `vagrant halt` will stop the VM (or the usual `shutdown -h now`
+when logged into it), `vagrant up` will restart it, and `vagrant ssh` to login.
 
-    The programs included with the Debian GNU/Linux system are free software;
-    the exact distribution terms for each program are described in the
-    individual files in /usr/share/doc/*/copyright.
-
-    Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
-    permitted by applicable law.
-    Last login: Sat Feb 15 13:18:04 2014 from 10.0.2.2
-    Linux debian-7 3.2.0-4-amd64 #1 SMP Debian 3.2.54-2 x86_64 GNU/Linux
-    Sat Feb 15 20:51:26 UTC 2014
-
-    : vagrant@wheezy-xen:~$;
-
-And that's it -- subsequently, `vagrant halt` will stop the VM (or the usual
-`shutdown -h now` when logged into it), `vagrant up` will restart it, and
-`vagrant ssh` to login. The VM is accessible from the host at the specified
-address (by default, `192.168.77.2`).
-
-If you want to customise the box, I suggest looking at the `Vagrantfile.template` plus
-the scripts in `provisioning/`.
-
-If when logging in the first time after provisioning you find that the shared
-filesystem is not accessible (by default at `/host`), logout, `vagrant halt` and
-`vagrant up`.
+# _Deprecated_
 
 ## Networking
 
@@ -90,7 +58,7 @@ thing were possible)...
     [ dom0       ]    [ mirage-domU ]
     [ 100.64.0.2 ]    [ 100.64.0.3  ]
                       [ vifN.0      ]
-         |                | 
+         |                |
          +---[ xenbr0 ]---+
                  |
                  |
