@@ -42,6 +42,9 @@ Connect to it via `ssh`:
 
     $ make ssh-{ubuntu-14.04,ubuntu-14.10,debian-7.8.0}
 
+Finally, within a box, make sure you add `~/bin` to your `$PATH` to use
+`0install` installed binaries (specifically, `opam`).
+
 Subsequently, `vagrant halt` will stop the VM (or the usual `shutdown -h now`
 when logged into it), `vagrant up` will restart it, and `vagrant ssh` to login.
 
