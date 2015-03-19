@@ -15,10 +15,6 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-# Based off auto-generated Vagrantfile. Uses private network IP address. Shares
-# my host OSX home directory with the VM via NFS, configure the VM with a
-# sensible default RAM, and provision it via scripts if required.
-
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -29,17 +25,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.network :private_network, ip: "192.168.77.2"
 
   # config.vm.synced_folder "/tmp/mirage-vagrant-vms", "/host", type: "nfs"
-  # config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.provider :virtualbox do |vb|
-    vb.gui = true # uncomment to observe boot via Virtualbox GUI
-    vb.customize ["modifyvm", :id, "--memory", "1024"]
+    vb.gui = false
   end
 
-  config.vm.provision "shell", path: "scripts/vagrant/ubuntu/hostname.sh"
-  config.vm.provision "shell", path: "scripts/vagrant/ubuntu/packages.sh"
-  config.vm.provision "shell", path: "scripts/vagrant/opam.sh"
-  config.vm.provision "shell", path: "scripts/vagrant/mirage.sh"
-  config.vm.provision "shell", path: "scripts/vagrant/finish.sh"
+  config.vm.provision "shell", path: "../scripts/packages.sh"
+  config.vm.provision "shell", path: "../scripts/xen.sh"
+  config.vm.provision "shell", path: "../scripts/networking.sh"
+  config.vm.provision "shell", path: "../scripts/opam.sh", privileged: false
+  config.vm.provision "shell", path: "../scripts/mirage.sh", privileged: false
+  config.vm.provision "shell", path: "../scripts/finish.sh"
 
 end
