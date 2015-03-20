@@ -5,7 +5,6 @@ set -ex
 date > /etc/vagrant_box_build_time
 
 useradd -G sudo --create-home -s /bin/bash vagrant || true
-useradd -G wheel --create-home -s /bin/bash vagrant
 
 mkdir -pm 700 /home/vagrant/.ssh
 wget --no-check-certificate                                             \
@@ -24,8 +23,3 @@ mkdir -p /vagrant || true
 echo 'Welcome to your Vagrant-built virtual machine.' > /var/run/motd || true
 
 apt-get -y install nfs-common nfs-kernel-server
-
-## XenServer specifics
-sed -i -e 's/net.bridge.bridge-nf-call-iptables = 0/net.bridge.bridge-nf-call-iptables = 1/g' /etc/sysctl.conf || true
-sed -i -e 's/net.bridge.bridge-nf-call-arptables = 0/net.bridge.bridge-nf-call-arptables = 1/g' /etc/sysctl.conf || true
-/opt/xensource/libexec/xen-cmdline --set-xen dom0_mem=400M,max:400M || true
