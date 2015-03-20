@@ -7,8 +7,10 @@
     $ git clone https://github.com/mirage/mirage-vagrant-vms.git
     $ cd mirage-vagrant-vms
 
-This currently contains support for Ubuntu 14.04 LTS (Trusty Tahr), Ubuntu 14.10
-(Utopic Unicorn) and Debian 7.8.0 ("wheezy").
+This currently contains support for Ubuntu 14.04 LTS ("Trusty Tahr"), Ubuntu
+14.10 ("Utopic Unicorn"), Debian 7.8.0 ("wheezy") and Citrix XenServer 6.5.0.
+
+XenServer support imported from <https://github.com/jonludlam/packer-xenserver>.
 
 ### Install `vagrant`
 
@@ -32,15 +34,15 @@ First, install [Vagrant][]. On OSX I use [homebrew][] so I do this as follows:
 
 Build a new box using `packer`:
 
-    $ make box-{ubuntu-14.04,ubuntu-14.10,debian-7.8.0}
+    $ make box-{ubuntu-14.04,ubuntu-14.10,debian-7.8.0,xenserver-6.5.0}
 
 Bring it up and provision it using `vagrant`:
 
-    $ make vagrant-{ubuntu-14.04,ubuntu-14.10,debian-7.8.0}
+    $ make vagrant-{ubuntu-14.04,ubuntu-14.10,debian-7.8.0,xenserver-6.5.0}
 
 Connect to it via `ssh`:
 
-    $ make ssh-{ubuntu-14.04,ubuntu-14.10,debian-7.8.0}
+    $ make ssh-{ubuntu-14.04,ubuntu-14.10,debian-7.8.0,xenserver-6.5.0}
 
 Finally, within a box, make sure you add `~/bin` to your `$PATH` to use
 `0install` installed binaries (specifically, `opam`).
