@@ -21,5 +21,3 @@ sed -i -e "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
 mkdir -p /vagrant || true
 
 echo 'Welcome to your Vagrant-built virtual machine.' > /var/run/motd || true
-
-apt-get -y install nfs-common nfs-kernel-server
