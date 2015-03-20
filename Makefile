@@ -14,12 +14,17 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-%-box:
+help:
+	@grep '^[^#[:space:]]' Makefile
+	@echo Pattern targets:
+	@for n in $$(ls -lR1 */Vagrantfile) ; do echo "\t$$(dirname $$n)" ; done
+
+%-box: # build vagrant box
 	packer build $*/template.json
 	vagrant box add -f $*-xen boxes/$*-amd64.box
 
-%-vagrant:
+%-vagrant: # boot and provision vagrant box
 	cd $* && vagrant up --provision
 
-%-ssh:
+%-ssh: # ssh to vagrant box
 	cd $* && vagrant ssh
