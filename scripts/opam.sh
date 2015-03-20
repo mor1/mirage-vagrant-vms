@@ -4,7 +4,7 @@ set -ex
 
 rm -rf ~/.config ~/bin
 
-mkdir ~/bin || true
+mkdir ~/bin
 
 sudo apt-get install -y ocaml ocaml-native-compilers camlp4-extra # ocaml
 sudo apt-get install -y aspcud curl zeroinstall-injector          # 0install
