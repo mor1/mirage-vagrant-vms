@@ -14,12 +14,12 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-box-%:
+%-box:
 	packer build $*/template.json
 	vagrant box add -f $*-xen boxes/$*-amd64.box
 
-vagrant-%:
+%-vagrant:
 	cd $* && vagrant up --provision
 
-ssh-%:
+%-ssh:
 	cd $* && vagrant ssh
