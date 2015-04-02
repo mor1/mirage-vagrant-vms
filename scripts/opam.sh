@@ -13,3 +13,8 @@ sudo apt-get install -y aspcud curl zeroinstall-injector          # 0install
 PATH=~/bin:$PATH
 opam init --verbose --auto-setup --yes
 eval $(opam config env)
+
+DISTRO=$(cut -f 1 -d ' ' /etc/issue)
+if [ "$DISTRO" = "Debian" ] ; then
+    opam switch set 4.02.0
+fi
