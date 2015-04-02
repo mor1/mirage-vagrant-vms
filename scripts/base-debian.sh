@@ -8,8 +8,9 @@ MIRROR=ftp.uk.debian.org
 ## backports good -- git 1.8 please
 grep wheezy-backports /etc/apt/sources.list ||
     (echo "deb $BACKPORTS wheezy-backports main" >> /etc/apt/sources.list)
+
 sed -i "s/http.us.debian.org/$MIRROR/g" /etc/apt/sources.list
-apt-get update
+apt-get update -y
 apt-get -y -t wheezy-backports install "git"
 
 # echo 'vagrant ALL=NOPASSWD:ALL' > /etc/sudoers.d/vagrant
