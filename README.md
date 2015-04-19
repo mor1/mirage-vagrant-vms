@@ -52,6 +52,9 @@ when logged into it), `vagrant up` will restart it, and `vagrant ssh` to login.
 
 # _Deprecated_
 
+The following networking instructions need to be updated. 
+
+
 ## Networking
 
 At the risk of this becoming a "general" Xen networking tutorial (as if such a
