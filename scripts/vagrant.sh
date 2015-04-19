@@ -1,21 +1,23 @@
-# Set up Vagrant.
+#!/bin/sh
+
+set -ex
 
 date > /etc/vagrant_box_build_time
 
-# Create the user vagrant with password vagrant
-useradd -G sudo -p $(perl -e'print crypt("vagrant", "vagrant")') -m -s /bin/bash -N vagrant
+useradd -G sudo --create-home -s /bin/bash vagrant || true
 
-# Install vagrant keys
 mkdir -pm 700 /home/vagrant/.ssh
-curl -Lo /home/vagrant/.ssh/authorized_keys \
-  'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub'
+wget --no-check-certificate                                             \
+     'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub' \
+     -O /home/vagrant/.ssh/authorized_keys
 chmod 0600 /home/vagrant/.ssh/authorized_keys
-chown -R vagrant:vagrant /home/vagrant/.ssh
+chown -R vagrant /home/vagrant/.ssh
 
-# Customize the message of the day
-echo 'Welcome to your Vagrant-built virtual machine.' > /var/run/motd
+echo 'vagrant:vagrant' | chpasswd
+echo 'UseDNS no' >> /etc/ssh/sshd_config
+echo "vagrant ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
+sed -i -e "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
 
-# Install NFS client
-apt-get -y install nfs-common
+mkdir -p /vagrant || true
 
-
+echo 'Welcome to your Vagrant-built virtual machine.' > /var/run/motd || true

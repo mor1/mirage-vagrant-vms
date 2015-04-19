@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
 #
-# Copyright (c) 2014 Richard Mortier <mort@cantab.net>
+# Copyright (c) 2015 Richard Mortier <mort@cantab.net>
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
 # with or without fee is hereby granted, provided that the above copyright
@@ -15,10 +14,17 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-# Clean up and reboot to pick up new hostname.
+help:
+	@grep '^[^#[:space:]]' Makefile
+	@echo Pattern targets:
+	@for n in $$(ls -lR1 */Vagrantfile) ; do echo "\t$$(dirname $$n)" ; done
 
-set -ex
+%-box: # build vagrant box
+	packer build $*/template.json
+	vagrant box add -f $*-xen boxes/$*-amd64.box
 
-# FIXME is next line actually needed?
-rm -f ~vagrant/*.sh
-reboot
+%-vagrant: # boot and provision vagrant box
+	cd $* && vagrant up --provision
+
+%-ssh: # ssh to vagrant box
+	cd $* && vagrant ssh

@@ -1,0 +1,57 @@
+{
+    "builders": [
+        {
+            "type": "virtualbox-iso",
+            "guest_os_type": "RedHat_64",
+            "disk_size": 51200,
+
+            "iso_checksum": "b6a5ce472a0010f5847669e624f06326",
+            "iso_checksum_type": "md5",
+            "iso_url": "http://downloadns.citrix.com.edgesuite.net/akdlm/10175/XenServer-6.5.0-xenserver.org-install-cd.iso",
+
+            "ssh_username": "root",
+            "ssh_password": "password",
+            "ssh_wait_timeout": "10000s",
+
+            "headless": false,
+            "http_directory": "xenserver-6.5.0/",
+
+            "boot_wait": "5s",
+            "boot_command": [
+                "<wait>menu.c32",
+                "<enter><wait><tab>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<wait>",
+                "answerfile=http://{{ .HTTPIP }}:{{ .HTTPPort }}/answerfile install ",
+                "--- /install.img<enter>"
+            ],
+
+            "shutdown_command": "/sbin/shutdown -hP now",
+            "vboxmanage": [
+                ["modifyvm", "{{.Name}}", "--memory", "2048"],
+                ["modifyvm", "{{.Name}}", "--cpus", "1"]
+            ],
+
+            "guest_additions_mode": "disable",
+            "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso"
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "vagrant",
+            "compression_level": 9,
+            "output": "boxes/xenserver-6.5.0-amd64.box"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/base-xenserver.sh",
+                "scripts/vagrant.sh",
+                "scripts/cleanup.sh",
+                "scripts/zerodisk.sh"
+            ]
+        }
+    ]
+}
