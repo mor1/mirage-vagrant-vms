@@ -2,7 +2,7 @@
 
 set -ex
 
-sudo apt-get install -y dnsmasq avahi-daemon # networking
+apt-get install -y dnsmasq avahi-daemon # networking
 
 cat <<EOF
 interface=br0
