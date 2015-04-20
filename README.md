@@ -34,15 +34,15 @@ First, install [Vagrant][]. On OSX I use [homebrew][] so I do this as follows:
 
 Build a new box using `packer`:
 
-    $ make box-{ubuntu-14.04,ubuntu-14.10,debian-7.8.0,xenserver-6.5.0}
+    $ make {ubuntu-14.04,ubuntu-14.10,debian-7.8.0,xenserver-6.5.0}-box
 
 Bring it up and provision it using `vagrant`:
 
-    $ make vagrant-{ubuntu-14.04,ubuntu-14.10,debian-7.8.0,xenserver-6.5.0}
+    $ make {ubuntu-14.04,ubuntu-14.10,debian-7.8.0,xenserver-6.5.0}-vagrant
 
 Connect to it via `ssh`:
 
-    $ make ssh-{ubuntu-14.04,ubuntu-14.10,debian-7.8.0,xenserver-6.5.0}
+    $ make {ubuntu-14.04,ubuntu-14.10,debian-7.8.0,xenserver-6.5.0}-ssh
 
 Finally, within a box, make sure you add `~/bin` to your `$PATH` to use
 `0install` installed binaries (specifically, `opam`).
