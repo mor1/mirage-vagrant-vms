@@ -12,9 +12,22 @@ This currently contains support for Ubuntu 14.04 LTS ("Trusty Tahr"), Ubuntu
 
 XenServer support imported from <https://github.com/jonludlam/packer-xenserver>.
 
+### Install `Virtualbox`
+
+First, install Oracle's [Virtualbox][]. Download the appropriate installer for
+your platform from <https://www.virtualbox.org/wiki/Downloads> and follow the
+instructions.
+
+[virtualbox]: https://www.virtualbox.org/
+
+Note that you need a reasonably recent version -- at time of writing, `4.3.4`
+has been observed to fail to build, while `4.3.26` has been observed to work.
+Reports of other working or failing versions welcome! (Perhaps as pull requests
+to this file in this repo :)
+
 ### Install `vagrant`
 
-First, install [Vagrant][]. On OSX I use [homebrew][] so I do this as follows:
+Next, install [Vagrant][]. On OSX I use [homebrew][] so I do this as follows:
 
     $ brew tap phinze/cask
     $ brew install brew-cask
@@ -27,8 +40,12 @@ First, install [Vagrant][]. On OSX I use [homebrew][] so I do this as follows:
 
 ### Install `packer`
 
+Then, install [Packer][]. Again, using [homebrew][] this becomes:
+
     $ brew tap homebrew/binary
     $ brew install packer
+
+[packer]: https://www.packer.io
 
 ## Use
 
