@@ -59,7 +59,7 @@ Bring it up and provision it using `vagrant`:
 
 Connect to it via `ssh`:
 
-    $ make {ubuntu-14.04,ubuntu-14.10,debian-7.8.0,xenserver-6.5.0}-ssh
+    $ cd {ubuntu-14.04,ubuntu-14.10,debian-7.8.0,xenserver-6.5.0} && vagrant ssh
 
 Finally, within a box, make sure you add `~/bin` to your `$PATH` to use
 `0install` installed binaries (specifically, `opam`).
@@ -69,7 +69,7 @@ when logged into it), `vagrant up` will restart it, and `vagrant ssh` to login.
 
 # _Deprecated_
 
-The following networking instructions need to be updated. 
+The following networking instructions need to be updated.
 
 
 ## Networking
