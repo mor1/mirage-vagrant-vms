@@ -25,6 +25,3 @@ help:
 
 %-vagrant: # boot and provision vagrant box
 	cd $* && vagrant up --provision
-
-%-ssh: # ssh to vagrant box
-	cd $* && vagrant ssh
